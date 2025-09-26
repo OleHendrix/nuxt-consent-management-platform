@@ -1,0 +1,59 @@
+{
+  "name": "@olehendrix/nuxt-consent-management-platform",
+  "version": "1.0.2",
+  "description": "A customizable cookie consent management component for Nuxt 3",
+  "keywords": [
+    "nuxt",
+    "nuxt3",
+    "cookie",
+    "consent",
+    "gdpr",
+    "privacy",
+    "vue",
+    "module"
+  ],
+  "author": "Ole Hendrix - ole.hendrixsk8@gmail.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OleHendrix/nuxt-consent-management-platform"
+  },
+  "homepage": "https://github.com/OleHendrix/nuxt-consent-management-platform/blob/main/README.md",
+  "bugs": {},
+  "exports": {
+    ".": {
+      "types": "./dist/types.d.ts",
+      "import": "./dist/module.mjs",
+      "require": "./dist/module.cjs"
+    }
+  },
+  "main": "./dist/module.cjs",
+  "types": "./dist/types.d.ts",
+  "files": [
+    "dist",
+    "runtime"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "nuxt-module-build",
+    "dev": "nuxi dev playground",
+    "dev:build": "nuxi build playground",
+    "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
+    "release": "npm run build && npm publish",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@headlessui/vue": "^1.7.0",
+    "@nuxt/kit": "^3.0.0",
+    "remixicon": "^4.0.0",
+    "unbuild": "^3.6.1"
+  },
+  "devDependencies": {
+    "@nuxt/module-builder": "^0.5.0",
+    "@nuxt/schema": "^3.0.0",
+    "nuxt": "^3.0.0",
+    "typescript": "^5.0.0"
+  },
+  "peerDependencies": {
+    "@nuxtjs/tailwindcss": "^6.0.0"
+  }
+}
