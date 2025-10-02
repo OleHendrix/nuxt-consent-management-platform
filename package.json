@@ -42,6 +42,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "@types/node": "^20.0.0",
     "@headlessui/vue": "^1.7.0",
     "@nuxt/kit": "^3.0.0",
     "remixicon": "^4.0.0",

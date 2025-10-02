@@ -21,16 +21,19 @@ const props = withDefaults(defineProps<props>(), {
 const runtimeConfig = useRuntimeConfig()
 const moduleConfig = runtimeConfig.public.consentManagement
 
-// Merge default config with user config
-const initialModalConfig = computed(() => ({
-  ...defaultInitialConfig,
-  ...moduleConfig?.initialModal
-}))
+// Try to load user config, fallback to defaults
+let initialModalConfig = {}
+let preferencesModalConfig = {}
 
-const preferencesModalConfig = computed(() => ({
-  ...defaultPreferencesConfig,
-  ...moduleConfig?.preferencesModal
-}))
+try {
+  // Try to import user config file
+  const userConfig = await import(`~/${moduleConfig.configFilePath}`)
+  initialModalConfig = userConfig.initialModalConfig || {}
+  preferencesModalConfig = userConfig.preferencesModalConfig || {}
+} catch (error) {
+  console.warn('Could not load user consent config, using defaults')
+}
+
 
 const servicePreferences = reactive<Record<string, boolean>>({})
 const isInitialized = ref(false)
