@@ -3,7 +3,6 @@ import { ref, reactive, onMounted, computed } from 'vue'
 import { useCookie, useRuntimeConfig } from 'nuxt/app'
 
 import  DialogNew from "./utils/dialog/Dialog.vue"
-import { initialModalConfig as defaultInitialConfig, preferencesModalConfig as defaultPreferencesConfig } from "../config"
 import { type Purpose, type Service } from "../types"
 import Trigger from "./utils/Trigger.vue"
 import InitialModal from "./utils/InitialModal.vue"
@@ -24,15 +23,7 @@ const moduleConfig = runtimeConfig.public.consentManagement
 // Try to load user config, fallback to defaults
 let initialModalConfig = {}
 let preferencesModalConfig = {}
-
-try {
-  // Try to import user config file
-  const userConfig = await import(`~/${moduleConfig.configFilePath}`)
-  initialModalConfig = userConfig.initialModalConfig || {}
-  preferencesModalConfig = userConfig.preferencesModalConfig || {}
-} catch (error) {
-  console.warn('Could not load user consent config, using defaults')
-}
+let purposes = []
 
 
 const servicePreferences = reactive<Record<string, boolean>>({})
@@ -41,7 +32,6 @@ const isDialogOpen = ref(false)
 const showMore = ref(false)
 const cookieSet = ref(false)
 
-const { purposes } = preferencesModalConfig
 
 // Use configured cookie name
 const cookieName = moduleConfig?.cookieName || 'cookie-preferences'
@@ -57,6 +47,10 @@ const cookiePrefs = useCookie(cookieName, {
 
 onMounted(() => {
   // Load from cookie if available
+  const runtimeConfig = useRuntimeConfig()
+  initialModalConfig = runtimeConfig.public.consentManagement.initialModal
+  preferencesModalConfig = runtimeConfig.public.consentManagement.preferencesModal
+  purposes = preferencesModalConfig.purposes
   const savedPrefs = cookiePrefs.value
   if (savedPrefs.preferences) {
     cookieSet.value = true
@@ -112,12 +106,31 @@ const parsePurposes = (text: string) => {
   return text.replace('{{ purposes }}', purposes?.filter((purpose: Purpose) => purpose.services?.some((service: Service) => !service.required)).map((purpose: Purpose) => purpose.title).join(' & '))
 }
 
+const colorClasses = {
+  red: {
+    button: 'text-sm px-3 py-1 text-white rounded-md transition-colors bg-red-600 hover:bg-red-500 cursor-pointer',
+    link: 'text-sm text-red-500 hover:text-red-600 cursor-pointer underline'
+  },
+  green: {
+    button: 'text-sm px-3 py-1 text-white rounded-md transition-colors bg-green-600 hover:bg-green-500 cursor-pointer',
+    link: 'text-sm text-green-500 hover:text-green-600 cursor-pointer underline'
+  },
+  blue: {
+    button: 'text-sm px-3 py-1 text-white rounded-md transition-colors bg-blue-600 hover:bg-blue-500 cursor-pointer',
+    link: 'text-sm text-blue-500 hover:text-blue-600 cursor-pointer underline'
+  },
+  yellow: {
+    button: 'text-sm px-3 py-1 text-white rounded-md transition-colors bg-yellow-600 hover:bg-yellow-500 cursor-pointer',
+    link: 'text-sm text-yellow-500 hover:text-yellow-600 cursor-pointer underline'
+  }
+}
+
 const getButtonClasses = (color: string) => {
-  return `text-sm px-3 py-1 text-white rounded-md transition-colors bg-${color}-600 hover:bg-${color}-500 cursor-pointer`
+  return colorClasses[color]?.button || colorClasses.blue.button
 }
 
 const getLinkClasses = (color: string) => {
-  return `text-sm text-${color}-500 hover:text-${color}-600 cursor-pointer underline`
+  return colorClasses[color]?.link || colorClasses.blue.link
 }
 
 </script>

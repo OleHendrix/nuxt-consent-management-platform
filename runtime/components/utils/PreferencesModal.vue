@@ -112,7 +112,7 @@ const togglePurposeExpansion = (purposeId: string) => {
     <!-- Header -->
     <div class="flex-shrink-0 border-b border-gray-200 pb-4">
       <div class="flex items-center justify-between">
-        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{{ config.title }}</h3>
+        <h3 class="text-3xl font-semibold text-gray-900">{{ config.title }}</h3>
         <img v-if="config.bannerImage" :src="config.bannerImage" :alt="config.title" class="w-10">
       </div>
       <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">{{ config.description }}</p>

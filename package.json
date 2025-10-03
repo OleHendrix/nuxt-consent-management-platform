@@ -53,8 +53,5 @@
     "@nuxt/schema": "^3.0.0",
     "nuxt": "^3.0.0",
     "typescript": "^5.0.0"
-  },
-  "peerDependencies": {
-    "@nuxtjs/tailwindcss": "^6.0.0"
   }
 }

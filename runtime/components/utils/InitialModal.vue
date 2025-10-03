@@ -23,13 +23,17 @@ const props = withDefaults(defineProps<props>(), {
   acceptAll: () => {},
 })
 
+onMounted(() => {
+  console.log('config', props.config)
+})
+
 </script>
 
 <template>
   <div>
     <!-- Header -->
     <div class="flex items-center justify-between">
-      <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{{ config.title }}</h3>
+      <h3 class="text-lg font-semibold text-gray-900">{{ config.title }}</h3>
       <img v-if="config.logoImage" :src="config.logoImage" :alt="config.title" class="w-10">
     </div>
     
