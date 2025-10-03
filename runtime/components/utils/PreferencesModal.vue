@@ -108,26 +108,26 @@ const togglePurposeExpansion = (purposeId: string) => {
 
 
 <template>
-  <div class="max-h-[80vh] flex flex-col">
+  <div class="cmp-preferences-modal">
     <!-- Header -->
-    <div class="flex-shrink-0 border-b border-gray-200 pb-4">
-      <div class="flex items-center justify-between">
-        <h3 class="text-3xl font-semibold text-gray-900">{{ config.title }}</h3>
-        <img v-if="config.bannerImage" :src="config.bannerImage" :alt="config.title" class="w-10">
+    <div class="cmp-preferences-header">
+      <div class="cmp-preferences-header-content">
+        <h3 class="cmp-preferences-title">{{ config.title }}</h3>
+        <img v-if="config.bannerImage" :src="config.bannerImage" :alt="config.title" class="cmp-logo">
       </div>
-      <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">{{ config.description }}</p>
+      <p class="cmp-preferences-description">{{ config.description }}</p>
     </div>
     
     <!-- Scrollable Content -->
-    <div class="flex-1 overflow-y-auto py-4">
+    <div class="cmp-preferences-content">
       <!-- Purposes -->
       <div 
         v-for="purpose in config.purposes" 
         :key="purpose.id"
-        class="border-b border-gray-200 p-4"
+        class="cmp-purpose-item"
       >
-        <div class="flex items-start space-x-3">
-          <div class="flex items-center">
+        <div class="cmp-purpose-row">
+          <div class="cmp-purpose-switch">
             <AdvancedSwitch
                 :id="purpose.id"
                 :model-value="purposeCheckedStatus(purpose)"
@@ -139,26 +139,26 @@ const togglePurposeExpansion = (purposeId: string) => {
             />
           </div>
           
-          <div class="flex-1 min-w-0">
+          <div class="cmp-purpose-details">
             <label 
               :for="purpose.id" 
-              class="block text-sm font-medium text-gray-900 dark:text-white cursor-pointer"
-              :class="{ 'cursor-not-allowed opacity-50': purposeRequired(purpose) }"
+              class="cmp-purpose-label"
+              :class="{ 'cmp-label-disabled': purposeRequired(purpose) }"
             >
               {{ purpose.title }}
-              <span v-if="purposeRequired(purpose)" class="text-xs text-gray-500 ml-1">(Required)</span>
+              <span v-if="purposeRequired(purpose)" class="cmp-required-badge">(Required)</span>
             </label>
             
-            <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+            <p class="cmp-purpose-text">
               {{ purpose.description }}
             </p>
             
-            <div v-if="purpose.services?.length" class="mt-2 flex items-center space-x-4 text-xs text-gray-500">
+            <div v-if="purpose.services?.length" class="cmp-services-toggle">
               <button 
                 @click="togglePurposeExpansion(purpose.id)"
-                class="flex items-center gap-1 hover:text-gray-700 dark:hover:text-gray-300 transition-colors cursor-pointer"
+                class="cmp-expand-button"
               >
-                <i :class="expandedPurposes[purpose.id] ? 'ri-arrow-down-s-line' : 'ri-arrow-right-s-line'" class="text-sm"></i>
+                <i :class="expandedPurposes[purpose.id] ? 'ri-arrow-down-s-line' : 'ri-arrow-right-s-line'" class="cmp-expand-icon"></i>
                 {{ purpose.services.length }} service{{ purpose.services.length !== 1 ? 's' : '' }}
               </button>
             </div>
@@ -168,14 +168,14 @@ const togglePurposeExpansion = (purposeId: string) => {
       <!-- Services -->
         <div 
           v-if="purpose.services && purpose.services.length > 0 && expandedPurposes[purpose.id]" 
-          class="ml-8 mt-4 space-y-3 border-l-2 border-gray-100 pl-4 overflow-hidden"
+          class="cmp-services-list"
         >
           <div 
             v-for="service in purpose.services" 
             :key="service.id"
-            class="flex items-start space-x-3"
+            class="cmp-service-item"
           >
-            <div class="flex items-center">
+            <div class="cmp-service-switch">
               <Switch
                   :id="service.id"
                   :model-value="servicePreferences[service.id]"
@@ -185,17 +185,17 @@ const togglePurposeExpansion = (purposeId: string) => {
               />
             </div>
             
-            <div class="flex-1 min-w-0">
+            <div class="cmp-service-details">
               <label 
                 :for="service.id" 
-                class="block text-sm font-medium text-gray-800 dark:text-gray-200 cursor-pointer"
-                :class="{ 'cursor-not-allowed opacity-50': service.required }"
+                class="cmp-service-label"
+                :class="{ 'cmp-label-disabled': service.required }"
               >
                 {{ service.title }}
-                <span v-if="service.required" class="text-xs text-gray-500 ml-1">(Required)</span>
+                <span v-if="service.required" class="cmp-required-badge">(Required)</span>
               </label>
               
-              <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+              <p class="cmp-service-text">
                 {{ service.description }}
               </p>
             </div>
@@ -205,22 +205,22 @@ const togglePurposeExpansion = (purposeId: string) => {
     </div>
 
     <!-- All Services Switch -->
-    <div v-if="showAllServicesSwitch" class="flex items-center space-x-3 mx-4 pb-4">
+    <div v-if="showAllServicesSwitch" class="cmp-all-services">
       <AdvancedSwitch
           :model-value="allServicesCheckedStatus()"
           @update:model-value="(state) => toggleAllServices(state)"
           :disable-off="config.purposes?.some((purpose: any) => purpose.services?.some((service: any) => service.required))"
           :color="color"
       />
-      <label class="text-sm font-medium text-gray-900 dark:text-white cursor-pointer">
+      <label class="cmp-all-services-label">
         All Services
       </label>
     </div>
 
     <!-- Fixed bottom section -->
-    <div class="flex-shrink-0 mx-4 pt-4" :class="{ 'border-t border-gray-200': showAllServicesSwitch }">
+    <div class="cmp-preferences-footer" :class="{ 'cmp-footer-border': showAllServicesSwitch }">
       <!-- Footer buttons -->
-      <div class="w-full flex justify-between items-center">
+      <div class="cmp-preferences-actions">
         <button 
           @click="savePreferences"
           :class="getButtonClasses('gray')"

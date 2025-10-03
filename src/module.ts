@@ -16,7 +16,7 @@ export default defineNuxtModule<ModuleOptions>({
     compatibility: {
       nuxt: '^3.0.0'
     }
-  },  
+  },
   defaults: {
     cookieName: 'cookie-preferences',
     cookieMaxAge: 60 * 60 * 24 * 365, // 1 year
@@ -25,6 +25,9 @@ export default defineNuxtModule<ModuleOptions>({
   },
   setup(options, nuxt) {
     const { resolve } = createResolver(import.meta.url)
+
+    // Add CSS
+    nuxt.options.css.push(resolve('../runtime/components/consent-manager.css'))
 
     addComponent({
       name: 'ConsentManager',

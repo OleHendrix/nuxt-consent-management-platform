@@ -23,31 +23,31 @@ const closeDialog = () => {
 
 <template>
   <TransitionRoot as="template" :show="open">
-    <Dialog class="relative z-50" @close="props.closeOnBackdrop ? closeDialog() : null">
+    <Dialog class="cmp-dialog-wrapper" @close="props.closeOnBackdrop ? closeDialog() : null">
       <TransitionChild 
         as="template" 
-        enter="ease-out duration-300" 
-        enter-from="opacity-0" 
-        enter-to="opacity-100" 
-        leave="ease-in duration-200" 
-        leave-from="opacity-100" 
-        leave-to="opacity-0"
+        enter="cmp-fade-enter" 
+        enter-from="cmp-fade-enter-from" 
+        enter-to="cmp-fade-enter-to" 
+        leave="cmp-fade-leave" 
+        leave-from="cmp-fade-leave-from" 
+        leave-to="cmp-fade-leave-to"
       >
-        <div class="fixed inset-0 bg-gray-500/75 transition-opacity dark:bg-gray-900/50" />
+        <div class="cmp-dialog-backdrop" />
       </TransitionChild>
 
-      <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
-        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+      <div class="cmp-dialog-container">
+        <div class="cmp-dialog-content-wrapper">
           <TransitionChild 
             as="template" 
-            enter="ease-out duration-300" 
-            enter-from="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
-            enter-to="opacity-100 translate-y-0 sm:scale-100" 
-            leave="ease-in duration-200" 
-            leave-from="opacity-100 translate-y-0 sm:scale-100" 
-            leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            enter="cmp-dialog-enter" 
+            enter-from="cmp-dialog-enter-from" 
+            enter-to="cmp-dialog-enter-to" 
+            leave="cmp-dialog-leave" 
+            leave-from="cmp-dialog-leave-from" 
+            leave-to="cmp-dialog-leave-to"
           >
-            <DialogPanel class="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-2xl sm:p-6 dark:bg-gray-800 dark:outline dark:-outline-offset-1 dark:outline-white/10">
+            <DialogPanel class="cmp-dialog-panel">
               <slot />
             </DialogPanel>
           </TransitionChild>

@@ -108,20 +108,24 @@ const parsePurposes = (text: string) => {
 
 const colorClasses = {
   red: {
-    button: 'text-sm px-3 py-1 text-white rounded-md transition-colors bg-red-600 hover:bg-red-500 cursor-pointer',
-    link: 'text-sm text-red-500 hover:text-red-600 cursor-pointer underline'
+    button: 'cmp-button cmp-button-red',
+    link: 'cmp-link cmp-link-red'
   },
   green: {
-    button: 'text-sm px-3 py-1 text-white rounded-md transition-colors bg-green-600 hover:bg-green-500 cursor-pointer',
-    link: 'text-sm text-green-500 hover:text-green-600 cursor-pointer underline'
+    button: 'cmp-button cmp-button-green',
+    link: 'cmp-link cmp-link-green'
   },
   blue: {
-    button: 'text-sm px-3 py-1 text-white rounded-md transition-colors bg-blue-600 hover:bg-blue-500 cursor-pointer',
-    link: 'text-sm text-blue-500 hover:text-blue-600 cursor-pointer underline'
+    button: 'cmp-button cmp-button-blue',
+    link: 'cmp-link cmp-link-blue'
   },
   yellow: {
-    button: 'text-sm px-3 py-1 text-white rounded-md transition-colors bg-yellow-600 hover:bg-yellow-500 cursor-pointer',
-    link: 'text-sm text-yellow-500 hover:text-yellow-600 cursor-pointer underline'
+    button: 'cmp-button cmp-button-yellow',
+    link: 'cmp-link cmp-link-yellow'
+  },
+  gray: {
+    button: 'cmp-button cmp-button-gray',
+    link: 'cmp-link cmp-link-gray'
   }
 }
 
