@@ -6,7 +6,7 @@ consentManagementPlatform: {
     logo: null,
     description: "Welcome, would you be bothered if we use cookies for {{ purposes }} to make your experience better?",
     decline: {
-      type: 'inline', // 'button' | 'link' | 'inline' | 'disabled' 
+      type: 'button', // 'button' | 'link' | 'inline' | 'disabled' 
       text: "Decline",
       color: 'red',
       inline: {
@@ -15,7 +15,7 @@ consentManagementPlatform: {
       }
     },
     more: {
-      type: 'inline', // 'button' | 'link' | 'inline' | 'disabled' 
+      type: 'button', // 'button' | 'link' | 'inline' | 'disabled' 
       text: "More",
       color: 'green',
       inline: {
@@ -24,7 +24,7 @@ consentManagementPlatform: {
       }
     },
     privacyPolicy: {
-      type: 'inline', // 'button' | 'link' | 'inline' | 'disabled' 
+      type: 'button', // 'button' | 'link' | 'inline' | 'disabled' 
       text: "Privacy Policy",
       color: 'yellow',
       inline: {
@@ -33,9 +33,9 @@ consentManagementPlatform: {
       }
     },
     accept: {
-      type: 'link', // 'button' | 'link'
+      type: 'button', // 'button' | 'link'
       text: "Accept",
-      color: 'cyan',
+      color: 'blue',
     }
   },
   preferencesModal: {
