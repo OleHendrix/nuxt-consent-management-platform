@@ -1,5 +1,5 @@
 // src/module.ts
-import { defineNuxtModule, createResolver, addComponent } from '@nuxt/kit'
+import { defineNuxtModule, createResolver, addComponent, addImportsDir } from '@nuxt/kit'
 import type { InitialModalConfig, PreferencesModalConfig } from '../runtime/types'
 
 export interface ModuleOptions {
@@ -31,12 +31,7 @@ export default defineNuxtModule<ModuleOptions>({
       filePath: resolve('../runtime/components/ConsentManager.vue')
     })
 
-    nuxt.hook('app:resolve', (app) => {
-      app.plugins.push({
-        src: resolve('../runtime/composables/useConsent.ts'),
-        mode: 'all'
-      })
-    })
+    addImportsDir(resolve('../runtime/composables'))
 
     nuxt.options.runtimeConfig.public.consentManagementPlatform = {
       ...options,

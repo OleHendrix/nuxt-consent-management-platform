@@ -1,7 +1,7 @@
 // runtime/composables/useConsent.ts
 import { useCookie, useRuntimeConfig } from 'nuxt/app'
 
-export default function useConsent() {
+export const useConsent = () => {
   const runtimeConfig = useRuntimeConfig()
   const cookieName = runtimeConfig.public.consentManagementPlatform?.cookieName || 'consent'
 
