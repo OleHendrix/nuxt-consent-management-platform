@@ -26,8 +26,6 @@ Demo:\
 npm install @olehendrix/nuxt-consent-management-platform
 ```
 
-------------------------------------------------------------------------
-
 ## 🔧 Setup
 
 1.  Import the component once in your Nuxt app root (`app.vue`):
@@ -113,8 +111,8 @@ export default defineNuxtConfig({
 ``` css
 @source "../../node_modules/@olehendrix/nuxt-consent-management-platform*.vue";
 ```
-
-------------------------------------------------------------------------
+## Setup instruction:
+![Setup](https://github.com/user-attachments/assets/fa12c006-e5a4-4487-bf87-ae53bc99bc35)
 
 ## ⚙️ Configuration
 
@@ -182,9 +180,7 @@ consentManagementPlatform: {
 👉 The full example is here:\
 [example.config.ts](https://github.com/OleHendrix/nuxt-consent-management-platform/blob/main/example.config.ts)
 
-------------------------------------------------------------------------
-
-### Config Fields
+## Config Fields
 
 #### `cookieName`
 
@@ -222,33 +218,19 @@ The modal where the user can fine-tune their cookie preferences.
     -   Each service has `id`, `title`, `description`, and `required`
         flag
 
-------------------------------------------------------------------------
-
 ## 📺 Examples
 
 ### All buttons
-
-[`<img width="1500" height="900" alt="Image" src="https://github.com/user-attachments/assets/e4788aa7-5c9c-4c9b-97a8-b477b612db59" />`{=html}](https://private-user-images.githubusercontent.com/160501406/497460138-e4788aa7-5c9c-4c9b-97a8-b477b612db59.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NTk1OTI0MzYsIm5iZiI6MTc1OTU5MjEzNiwicGF0aCI6Ii8xNjA1MDE0MDYvNDk3NDYwMTM4LWU0Nzg4YWE3LTVjOWMtNGM5Yi05N2E4LWI0NzdiNjEyZGI1OS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUxMDA0JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MTAwNFQxNTM1MzZaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1jYzNmMmIyYWZmM2M4NGQ4ODc1OTQ2NWE5NWM2MDQyYzdkMjAwZmIxOTA1MzNkNjMwNjkxNTE1Y2FmODYzOThiJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.V8ALh2R2ubTI4g3fBX86o9p9ZobnihkB_per0EaxFZM)
-
+![Image](./examples/1.png)
 ### With links
-
-`<img width="1500" height="900" alt="Image" src="https://github.com/user-attachments/assets/c84aa475-09c5-4f2c-bfab-13316e934305" />`{=html}
-
+![Image](./examples/2.png)
 ### Sneaky inline links
-
-`<img width="1500" height="900" alt="Image" src="https://github.com/user-attachments/assets/3d7afc28-47dd-4525-8c87-06190134bc73" />`{=html}
+![Image](./examples/3.png)
 
 ### Dark mode & logo support
 
 ![Image](https://github.com/user-attachments/assets/f394f210-ceb4-4238-a003-6aea107cd98c)
 
-------------------------------------------------------------------------
-
-## 🎬 Setup GIF
-
-![Setup](https://github.com/user-attachments/assets/fa12c006-e5a4-4487-bf87-ae53bc99bc35)
-
-------------------------------------------------------------------------
 
 ## 🛠️ Available Composables
 
