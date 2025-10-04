@@ -10,8 +10,8 @@ interface props {
   servicePreferences: any
   declineAll: () => void
   savePreferences: () => void
-  getLinkClasses: (color: string) => string
-  getButtonClasses: (color: string) => string
+  linkColors: {[key: string]: string}
+  buttonColors: {[key: string]: string}
   acceptAll: () => void
   color: string
   showAllServicesSwitch: boolean
@@ -22,8 +22,8 @@ const props = withDefaults(defineProps<props>(), {
   servicePreferences: {},
   declineAll: () => {},
   savePreferences: () => {},
-  getLinkClasses: () => '',
-  getButtonClasses: () => '',
+  linkColors: () => {},
+  buttonColors: () => {},
   acceptAll: () => {},
   color: '',
   showAllServicesSwitch: true,
@@ -108,12 +108,12 @@ const togglePurposeExpansion = (purposeId: string) => {
 
 
 <template>
-  <div class="max-h-[80vh] flex flex-col">
+  <div class="max-h-[80vh] flex flex-col bg-white dark:bg-gray-800">
     <!-- Header -->
-    <div class="flex-shrink-0 border-b border-gray-200 pb-4">
+    <div class="flex-shrink-0 border-b border-gray-200 dark:border-gray-700 pb-4">
       <div class="flex items-center justify-between">
-        <h3 class="text-3xl font-semibold text-gray-900">{{ config.title }}</h3>
-        <img v-if="config.bannerImage" :src="config.bannerImage" :alt="config.title" class="w-10">
+        <h3 class="text-3xl font-semibold text-gray-900 dark:text-white">{{ config.title }}</h3>
+        <img v-if="config.logo" :src="config.logo" :alt="config.title" class="w-10">
       </div>
       <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">{{ config.description }}</p>
     </div>
@@ -124,7 +124,7 @@ const togglePurposeExpansion = (purposeId: string) => {
       <div 
         v-for="purpose in config.purposes" 
         :key="purpose.id"
-        class="border-b border-gray-200 p-4"
+        class="border-b border-gray-200 dark:border-gray-700 p-4"
       >
         <div class="flex items-start space-x-3">
           <div class="flex items-center">
@@ -168,7 +168,7 @@ const togglePurposeExpansion = (purposeId: string) => {
       <!-- Services -->
         <div 
           v-if="purpose.services && purpose.services.length > 0 && expandedPurposes[purpose.id]" 
-          class="ml-8 mt-4 space-y-3 border-l-2 border-gray-100 pl-4 overflow-hidden"
+          class="ml-8 mt-4 space-y-3 border-l border-gray-100 dark:border-gray-700 pl-4 overflow-hidden"
         >
           <div 
             v-for="service in purpose.services" 
@@ -218,18 +218,18 @@ const togglePurposeExpansion = (purposeId: string) => {
     </div>
 
     <!-- Fixed bottom section -->
-    <div class="flex-shrink-0 mx-4 pt-4" :class="{ 'border-t border-gray-200': showAllServicesSwitch }">
+    <div class="flex-shrink-0 pt-4" :class="{ 'border-t border-gray-200 dark:border-gray-700': showAllServicesSwitch }">
       <!-- Footer buttons -->
       <div class="w-full flex justify-between items-center">
         <button 
           @click="savePreferences"
-          :class="getButtonClasses('gray')"
+          class="text-sm px-3 py-1 text-white rounded-md transition-colors cursor-pointer bg-gray-600 hover:bg-gray-500"
         >
           Accept Selected
         </button>
         
         <button 
-          :class="getButtonClasses(color)"
+          class="text-sm px-3 py-1 text-white rounded-md transition-colors cursor-pointer" :class="buttonColors[props.color]"
           @click="acceptAll"
         >
           Accept All

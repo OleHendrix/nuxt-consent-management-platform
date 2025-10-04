@@ -2,9 +2,8 @@ import { type InitialModalConfig, type PreferencesModalConfig } from "./types"
 
 export const initialModalConfig: InitialModalConfig = {
   title: "Hmmmm Cookies...",
-  logoImage: null,
+  logo: null,
   description: "Welcome, would you be bothered if we use cookies for {{ purposes }} to make your experience better?",
-  triggerIcon: null, //default: ri-settings-5-line
   decline: {
     type: 'button', // 'button' | 'link' | 'inline' | 'disabled' 
     text: "Decline",
@@ -42,7 +41,7 @@ export const initialModalConfig: InitialModalConfig = {
 export const preferencesModalConfig: PreferencesModalConfig  = {
   title: "Hmmmm Cookies...",
   description: "Manage your privacy preferences and cookie settings",
-  bannerImage: null,
+  logo: null,
   updatedAt: new Date().toISOString(),
   purposes: [
     {

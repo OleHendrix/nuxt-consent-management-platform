@@ -1,8 +1,7 @@
 export type InitialModalConfig = {
   title: string
-  logoImage: string | null
+  logo: string | null
   description: string | null
-  triggerIcon: string | null
   decline: {
     type: 'button' | 'link' | 'inline' | 'disabled'
     text: string
@@ -54,7 +53,7 @@ export type Service = {
 export type PreferencesModalConfig = {
   title: string
   description: string | null
-  bannerImage: string | null
+  logo: string | null
   updatedAt: string
   purposes: Purpose[]
 }

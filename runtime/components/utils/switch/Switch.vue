@@ -35,6 +35,7 @@ const handleKeydown = (event: KeyboardEvent) => {
   }
 }
 
+
 const switchClasses = computed(() => {
   const baseClasses = 'peer inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-gray-600 dark:focus-visible:ring-offset-gray-900'
   

@@ -1,5 +1,5 @@
 // src/module.ts
-import { defineNuxtModule, createResolver, addComponent, addComponentsDir } from '@nuxt/kit'
+import { defineNuxtModule, createResolver, addComponent } from '@nuxt/kit'
 import type { InitialModalConfig, PreferencesModalConfig } from '../runtime/types'
 
 export interface ModuleOptions {
@@ -12,13 +12,13 @@ export interface ModuleOptions {
 export default defineNuxtModule<ModuleOptions>({
   meta: {
     name: '@olehendrix/nuxt-consent-management-platform',
-    configKey: 'consentManagement',
+    configKey: 'consentManagementPlatform',
     compatibility: {
       nuxt: '^3.0.0'
     }
   },  
   defaults: {
-    cookieName: 'cookie-preferences',
+    cookieName: 'consent',
     cookieMaxAge: 60 * 60 * 24 * 365, // 1 year
     initialModal: {},
     preferencesModal: {},
@@ -32,7 +32,11 @@ export default defineNuxtModule<ModuleOptions>({
     })
 
     // Make module options available in runtime config
-    nuxt.options.runtimeConfig.public.consentManagement = options
+    nuxt.options.runtimeConfig.public.consentManagementPlatform = {
+      ...options,
+      initialModal: options.initialModal || {},
+      preferencesModal: options.preferencesModal || {}
+    }
   }
 })
 
