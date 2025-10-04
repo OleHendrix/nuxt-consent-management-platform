@@ -1,6 +1,6 @@
 {
   "name": "@olehendrix/nuxt-consent-management-platform",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "A customizable cookie consent management component for Nuxt 3",
   "keywords": [
     "nuxt",
