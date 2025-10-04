@@ -31,7 +31,13 @@ export default defineNuxtModule<ModuleOptions>({
       filePath: resolve('../runtime/components/ConsentManager.vue')
     })
 
-    // Make module options available in runtime config
+    nuxt.hook('app:resolve', (app) => {
+      app.plugins.push({
+        src: resolve('../runtime/composables/useConsent.ts'),
+        mode: 'all'
+      })
+    })
+
     nuxt.options.runtimeConfig.public.consentManagementPlatform = {
       ...options,
       initialModal: options.initialModal || {},
@@ -40,5 +46,4 @@ export default defineNuxtModule<ModuleOptions>({
   }
 })
 
-// Export types for TypeScript users
 export type { InitialModalConfig, PreferencesModalConfig, Purpose, Service } from '../runtime/types'
